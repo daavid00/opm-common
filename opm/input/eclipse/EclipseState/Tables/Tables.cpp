@@ -49,7 +49,9 @@
 #include <opm/input/eclipse/EclipseState/Tables/PbvdTable.hpp>
 #include <opm/input/eclipse/EclipseState/Tables/PdvdTable.hpp>
 #include <opm/input/eclipse/EclipseState/Tables/PcfactTable.hpp>
+#include <opm/input/eclipse/EclipseState/Tables/PefactTable.hpp>
 #include <opm/input/eclipse/EclipseState/Tables/PermfactTable.hpp>
+#include <opm/input/eclipse/EclipseState/Tables/PermporoTable.hpp>
 #include <opm/input/eclipse/EclipseState/Tables/PlyadsTable.hpp>
 #include <opm/input/eclipse/EclipseState/Tables/PlydhflfTable.hpp>
 #include <opm/input/eclipse/EclipseState/Tables/PlymaxTable.hpp>
@@ -1471,6 +1473,26 @@ PermfactTable::getPermeabilityMultiplierColumn() const
     return SimpleTable::getColumn(1);
 }
 
+PermporoTable::PermporoTable(const DeckItem& item, const int tableID)
+{
+    m_schema.addColumn(ColumnSchema("POROSITYCHANGE", Table::STRICTLY_INCREASING, Table::DEFAULT_NONE));
+    m_schema.addColumn(ColumnSchema("PERMEABILITYMULTIPLIER", Table::RANDOM, Table::DEFAULT_NONE));
+
+    SimpleTable::init("PERMPORO", item, tableID);
+}
+
+const TableColumn&
+PermporoTable::getPorosityChangeColumn() const
+{
+    return SimpleTable::getColumn(0);
+}
+
+const TableColumn&
+PermporoTable::getPermeabilityMultiplierColumn() const
+{
+    return SimpleTable::getColumn(1);
+}
+
 PcfactTable::PcfactTable(const DeckItem& item, const int tableID)
 {
     m_schema.addColumn(ColumnSchema("POROSITYCHANGE", Table::STRICTLY_INCREASING, Table::DEFAULT_NONE));
@@ -1487,6 +1509,26 @@ PcfactTable::getPorosityChangeColumn() const
 
 const TableColumn&
 PcfactTable::getPcMultiplierColumn() const
+{
+    return SimpleTable::getColumn(1);
+}
+
+PefactTable::PefactTable(const DeckItem& item, const int tableID)
+{
+    m_schema.addColumn(ColumnSchema("POROSITYCHANGE", Table::STRICTLY_INCREASING, Table::DEFAULT_NONE));
+    m_schema.addColumn(ColumnSchema("PCMULTIPLIER", Table::RANDOM, Table::DEFAULT_NONE));
+
+    SimpleTable::init("PEFACT", item, tableID);
+}
+
+const TableColumn&
+PefactTable::getPorosityChangeColumn() const
+{
+    return SimpleTable::getColumn(0);
+}
+
+const TableColumn&
+PefactTable::getPcMultiplierColumn() const
 {
     return SimpleTable::getColumn(1);
 }

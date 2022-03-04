@@ -79,6 +79,13 @@ initFromState(const EclipseState& eclState, const Schedule&)
 
     brineReferenceDensity_[regionIdx] = Brine::liquidDensity(T_ref, P_ref, salinity_[regionIdx], extrapolate);
     h2ReferenceDensity_[regionIdx] = H2::gasDensity(T_ref, P_ref, extrapolate);
+
+    OpmLog::info("H2STORE is enabled. \n The surface density of H2 is  " + std::to_string(h2ReferenceDensity_[regionIdx])
+                 + "kg/m3 \n The surface density of Brine is  " + std::to_string(brineReferenceDensity_[regionIdx])
+                 + "kg/m3"
+                 + "\n The surface densities are computed using the reference pressure ( " + std::to_string(P_ref) 
+                 + "Pa) and the reference temperature (" +  std::to_string(T_ref) + "K)." 
+                 );
 }
 
 template class BrineH2Pvt<double>;

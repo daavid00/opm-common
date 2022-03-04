@@ -58,6 +58,7 @@
 #include <opm/input/eclipse/EclipseState/Tables/Regdims.hpp>
 #include <opm/input/eclipse/EclipseState/Tables/TLMixpar.hpp>
 #include <opm/input/eclipse/EclipseState/Tables/Ppcwmax.hpp>
+#include <opm/input/eclipse/EclipseState/Tables/Bactpara.hpp>
 
 namespace Opm {
 
@@ -80,6 +81,7 @@ namespace Opm {
         const Regdims& getRegdims() const;
         const TLMixpar& getTLMixpar() const;
         const Ppcwmax& getPpcwmax() const;
+        const Bactpara& getBactpara() const;
         /*
           WIll return max{ Tabdims::NTFIP , Regdims::NTFIP }.
         */
@@ -103,7 +105,9 @@ namespace Opm {
         const TableContainer& getSaltpvdTables() const;
         const TableContainer& getSaltsolTables() const;
         const TableContainer& getPcfactTables() const;
+        const TableContainer& getPefactTables() const;
         const TableContainer& getPermfactTables() const;
+        const TableContainer& getPermporoTables() const;
         const TableContainer& getEnkrvdTables() const;
         const TableContainer& getEnptvdTables() const;
         const TableContainer& getImkrvdTables() const;
@@ -267,6 +271,7 @@ namespace Opm {
             serializer(m_diff_mole_fraction);
             serializer(m_tlmixpar);
             serializer(m_ppcwmax);
+            serializer(m_bactpara);
             if (!serializer.isSerializing()) {
                 m_simpleTables = simpleTables;
                 if (split.plyshMax > 0) {
@@ -399,6 +404,7 @@ namespace Opm {
         Aqudims m_aqudims;
         TLMixpar m_tlmixpar;
         Ppcwmax m_ppcwmax;
+        Bactpara m_bactpara;
 
         bool hasImptvd = false;// if deck has keyword IMPTVD
         bool hasEnptvd = false;// if deck has keyword ENPTVD

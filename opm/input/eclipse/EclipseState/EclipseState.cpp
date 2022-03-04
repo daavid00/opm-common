@@ -483,7 +483,6 @@ namespace Opm {
                        "MULTFLT(FLTNAME) equals {} and MULT(FLT-TRS) equals {}\n"
                        "Error creating reservoir properties: {}" , faultPattern, multFlt, std_error.what()));
                     error = true;
-
                 }
             }
         }

@@ -1,0 +1,37 @@
+{
+    "name": "BACTPARA",
+    "sections": [
+        "PROPS"
+    ],
+    "size": {
+        "keyword": "TABDIMS",
+        "item": "NTSFUN"
+      },
+    "items": [
+        {
+            "name": "BIOFILM_DENSITY",
+            "value_type": "DOUBLE",
+            "dimension": "Density"
+        },
+        {
+            "name": "MAX_GROWTH_RATE",
+            "value_type": "DOUBLE",
+            "dimension": "1/Time"
+        },
+        {
+            "name": "HALF_VELOCITY_COEFFICIENT",
+            "value_type": "DOUBLE",
+            "dimension": "Density"
+        },
+        {
+            "name": "YIELD_COEFFICIENT",
+            "value_type": "DOUBLE",
+            "dimension": "1"
+        },
+        {
+            "name": "DECAY_COEFFICIENT",
+            "value_type": "DOUBLE",
+            "dimension": "1/Time"
+        }
+    ]
+}
