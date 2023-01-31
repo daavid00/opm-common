@@ -2346,6 +2346,23 @@ BOOST_AUTO_TEST_CASE( TestParseDIFFC ) {
     BOOST_CHECK_CLOSE( 1.8, diffc[0].oil_in_oil_cross_phase*conversion_factor, epsilon() );
 }
 
+BOOST_AUTO_TEST_CASE( TestParseDISPC ) {
+    const std::string data = R"(
+      TABDIMS
+        1* 1 /
+
+      DISPC
+        1.0 1.1/
+    )";
+
+    Opm::Parser parser;
+    auto deck = parser.parseString(data);
+    Opm::TableManager tables( deck );
+    const auto& dispc = tables.getDispersionCoefficientTable();
+    BOOST_CHECK_CLOSE( 1.0, dispc[0].along, epsilon());
+    BOOST_CHECK_CLOSE( 1.1, dispc[0].trans, epsilon());
+}
+
 BOOST_AUTO_TEST_CASE( TestParseROCK ) {
     const std::string data = R"(
       TABDIMS

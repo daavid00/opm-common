@@ -1,0 +1,22 @@
+{
+  "name": "DISPC",
+  "sections": [
+    "PROPS"
+  ],
+  "size": {
+    "keyword": "TABDIMS",
+    "item": "NTPVT"
+  },
+  "items": [
+    {
+      "name": "DISPERSION_COEFF",
+      "value_type": "DOUBLE",
+      "dimension": "Length"
+    },
+    {
+      "name": "DISPERSION_COEFF_T",
+      "value_type": "DOUBLE",
+      "dimension": "Length"
+    }
+  ]
+}

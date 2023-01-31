@@ -1424,6 +1424,20 @@ public:
     static void setDiffusionCoefficient(Scalar coefficient, unsigned compIdx, unsigned phaseIdx, unsigned regionIdx = 0)
     { diffusionCoefficients_[regionIdx][numPhases*compIdx + phaseIdx] = coefficient ; }
 
+    //! \copydoc BaseFluidSystem::dispersionCoefficient
+    static Scalar dispersionCoefficientAlong(unsigned regionIdx = 0)
+    { return dispersionCoefficients_[regionIdx][0]; }
+
+    //! \copydoc BaseFluidSystem::dispersionCoefficient
+    static Scalar dispersionCoefficientTrans(unsigned regionIdx = 0)
+    { return dispersionCoefficients_[regionIdx][1]; }
+
+    //! \copydoc BaseFluidSystem::setDispersionCoefficient
+    static void setDispersionCoefficients(Scalar coefficient_along, Scalar coefficient_trans, unsigned regionIdx = 0)
+    { dispersionCoefficients_[regionIdx][0] = coefficient_along ;
+    dispersionCoefficients_[regionIdx][1] = coefficient_trans ; }
+
+
     /*!
      * \copydoc BaseFluidSystem::diffusionCoefficient
      */
@@ -1474,6 +1488,8 @@ private:
     static std::vector<std::array<Scalar, /*numPhases=*/3> > referenceDensity_;
     static std::vector<std::array<Scalar, /*numComponents=*/3> > molarMass_;
     static std::vector<std::array<Scalar, /*numComponents=*/3 * /*numPhases=*/3> > diffusionCoefficients_;
+    static std::vector<std::array<Scalar, 2> > dispersionCoefficients_;
+
 
     static std::array<short, numPhases> activeToCanonicalPhaseIdx_;
     static std::array<short, numPhases> canonicalToActivePhaseIdx_;
@@ -1544,6 +1560,11 @@ BlackOilFluidSystem<Scalar, IndexTraits>::molarMass_;
 template <class Scalar, class IndexTraits>
 std::vector<std::array<Scalar, 9> >
 BlackOilFluidSystem<Scalar, IndexTraits>::diffusionCoefficients_;
+
+template <class Scalar, class IndexTraits>
+std::vector<std::array<Scalar, 2> >
+BlackOilFluidSystem<Scalar, IndexTraits>::dispersionCoefficients_;
+
 
 template <class Scalar, class IndexTraits>
 bool BlackOilFluidSystem<Scalar, IndexTraits>::isInitialized_ = false;

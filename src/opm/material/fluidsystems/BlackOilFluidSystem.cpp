@@ -33,7 +33,7 @@
 #endif
 
 #include <fmt/format.h>
-
+#include <iostream>
 namespace Opm {
 
 #if HAVE_ECL_INPUT
@@ -158,6 +158,14 @@ initFromState(const EclipseState& eclState, const Schedule& schedule)
                               "Please default DIFFC item 7 and item 8 "
                               "or set it to zero.");
                 }
+            }
+        }
+        const auto& dispCoeffTables = eclState.getTableManager().getDispersionCoefficientTable();
+        dispersionCoefficients_.resize(numRegions,{0.0,0.0});
+        if (!dispCoeffTables.empty()) {
+            for (unsigned regionIdx = 0; regionIdx < numRegions; ++regionIdx) {
+                const auto& dispCoeffTable = dispCoeffTables[regionIdx];
+                setDispersionCoefficients(dispCoeffTable.along, dispCoeffTable.trans, regionIdx);
             }
         }
     }

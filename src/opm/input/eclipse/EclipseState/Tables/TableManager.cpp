@@ -173,6 +173,9 @@ std::optional<JFunc> make_jfunc(const Deck& deck) {
         if( deck.hasKeyword( "DIFFC" ) )
             this->m_diffCoeffTable = DiffCoeffTable( deck["DIFFC"].back() );
 
+        if( deck.hasKeyword( "DISPC" ) )
+            this->m_dispCoeffTable = DispCoeffTable( deck["DISPC"].back() );
+
         if( deck.hasKeyword( "ROCK" ) )
             this->m_rockTable = RockTable( deck["ROCK"].back() );
 
@@ -277,6 +280,7 @@ std::optional<JFunc> make_jfunc(const Deck& deck) {
         result.m_pvcdoTable = PvcdoTable::serializationTestObject();
         result.m_densityTable = DensityTable::serializationTestObject();
         result.m_diffCoeffTable = DiffCoeffTable::serializationTestObject();
+        result.m_dispCoeffTable = DispCoeffTable::serializationTestObject();
         result.m_plyvmhTable = PlyvmhTable::serializationTestObject();
         result.m_rockTable = RockTable::serializationTestObject();
         result.m_plmixparTable = PlmixparTable::serializationTestObject();
@@ -1114,6 +1118,10 @@ std::optional<JFunc> make_jfunc(const Deck& deck) {
         return this->m_diffCoeffTable;
     }
 
+    const DispCoeffTable& TableManager::getDispersionCoefficientTable() const {
+        return this->m_dispCoeffTable;
+    }
+
     const RockTable& TableManager::getRockTable() const {
         return this->m_rockTable;
     }
@@ -1252,6 +1260,7 @@ std::optional<JFunc> make_jfunc(const Deck& deck) {
                m_pvcdoTable == data.m_pvcdoTable &&
                m_densityTable == data.m_densityTable &&
                m_diffCoeffTable == data.m_diffCoeffTable &&
+               m_dispCoeffTable == data.m_dispCoeffTable &&
                m_plmixparTable == data.m_plmixparTable &&
                m_plyvmhTable == data.m_plyvmhTable &&
                m_shrateTable == data.m_shrateTable &&

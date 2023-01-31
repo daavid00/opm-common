@@ -161,6 +161,7 @@ namespace Opm {
         const PvcdoTable& getPvcdoTable() const;
         const DensityTable& getDensityTable() const;
         const DiffCoeffTable& getDiffusionCoefficientTable() const;
+        const DispCoeffTable& getDispersionCoefficientTable() const;
         const PlyvmhTable& getPlyvmhTable() const;
         const RockTable& getRockTable() const;
         const ViscrefTable& getViscrefTable() const;
@@ -217,6 +218,7 @@ namespace Opm {
             serializer(m_pvcdoTable);
             serializer(m_densityTable);
             serializer(m_diffCoeffTable);
+            serializer(m_dispCoeffTable);
             serializer(m_plyvmhTable);
             serializer(m_rockTable);
             serializer(m_plmixparTable);
@@ -361,6 +363,7 @@ namespace Opm {
         PvcdoTable m_pvcdoTable;
         DensityTable m_densityTable;
         DiffCoeffTable m_diffCoeffTable;
+        DispCoeffTable m_dispCoeffTable;
         PlyvmhTable m_plyvmhTable;
         RockTable m_rockTable;
         PlmixparTable m_plmixparTable;

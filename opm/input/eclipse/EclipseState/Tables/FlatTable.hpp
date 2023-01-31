@@ -191,6 +191,34 @@ struct DiffCoeffTable : public FlatTable< DiffCoeffRecord > {
     }
 };
 
+struct DispCoeffRecord {
+    static constexpr std::size_t size = 2;
+
+    double along;
+    double trans;
+
+    bool operator==(const DispCoeffRecord& data) const {
+        return along == data.along &&
+               trans == data.trans;
+    }
+
+    template<class Serializer>
+    void serializeOp(Serializer& serializer)
+    {
+        serializer(along);
+        serializer(trans);
+    }
+};
+
+struct DispCoeffTable : public FlatTable< DispCoeffRecord > {
+    using FlatTable< DispCoeffRecord >::FlatTable;
+
+    static DispCoeffTable serializationTestObject()
+    {
+        return DispCoeffTable({{1.0, 2.0}});
+    }
+};
+
 struct PVTWRecord {
     static constexpr std::size_t size = 5;
 
