@@ -176,6 +176,7 @@ if(ENABLE_ECL_INPUT)
     opm/input/eclipse/EclipseState/SimulationConfig/ThresholdPressure.cpp
     opm/input/eclipse/EclipseState/SummaryConfig/SummaryConfig.cpp
     opm/input/eclipse/EclipseState/Tables/Aqudims.cpp
+    opm/input/eclipse/EclipseState/Tables/Biofpara.cpp
     opm/input/eclipse/EclipseState/Tables/ColumnSchema.cpp
     opm/input/eclipse/EclipseState/Tables/DenT.cpp
     opm/input/eclipse/EclipseState/Tables/JouleThomson.cpp
@@ -1225,6 +1226,7 @@ if(ENABLE_ECL_INPUT)
        opm/input/eclipse/EclipseState/TracerConfig.hpp
        opm/input/eclipse/EclipseState/MICPpara.hpp
        opm/input/eclipse/EclipseState/WagHysteresisConfig.hpp
+       opm/input/eclipse/EclipseState/Tables/Biofpara.hpp
        opm/input/eclipse/EclipseState/Tables/DenT.hpp
        opm/input/eclipse/EclipseState/Tables/JouleThomson.hpp
        opm/input/eclipse/EclipseState/Tables/SimpleTable.hpp
@@ -1241,7 +1243,9 @@ if(ENABLE_ECL_INPUT)
        opm/input/eclipse/EclipseState/Tables/PvtwsaltTable.hpp
        opm/input/eclipse/EclipseState/Tables/BrineDensityTable.hpp
        opm/input/eclipse/EclipseState/Tables/PcfactTable.hpp
+       opm/input/eclipse/EclipseState/Tables/PefactTable.hpp
        opm/input/eclipse/EclipseState/Tables/PermfactTable.hpp
+       opm/input/eclipse/EclipseState/Tables/PermporoTable.hpp
        opm/input/eclipse/EclipseState/Tables/RwgsaltTable.hpp
        opm/input/eclipse/EclipseState/Tables/SaltSolubilityTable.hpp
        opm/input/eclipse/EclipseState/Tables/SaltvdTable.hpp
