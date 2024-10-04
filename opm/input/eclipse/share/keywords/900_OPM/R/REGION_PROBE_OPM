@@ -5,6 +5,7 @@
   ],
   "comment": "Region-level summary vectors supported only by OPM Flow",
   "deck_names": [
+    "RBIP",
     "RGKDI",
     "RGKDM",
     "RGKMO",
@@ -15,7 +16,8 @@
     "RGMMO",
     "RGMST",
     "RGMIM",
-    "RGMUS"
+    "RGMUS",
+    "RWMIP"
   ],
   "deck_name_regex_suffix": "_{0,2}[A-Z0-9]{3}",
   "data": {

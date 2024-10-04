@@ -84,7 +84,9 @@
 #include <opm/input/eclipse/EclipseState/Tables/RvvdTable.hpp>
 #include <opm/input/eclipse/EclipseState/Tables/RvwvdTable.hpp>
 #include <opm/input/eclipse/EclipseState/Tables/PcfactTable.hpp>
+#include <opm/input/eclipse/EclipseState/Tables/PefactTable.hpp>
 #include <opm/input/eclipse/EclipseState/Tables/PermfactTable.hpp>
+#include <opm/input/eclipse/EclipseState/Tables/PermporoTable.hpp>
 #include <opm/input/eclipse/EclipseState/Tables/SaltvdTable.hpp>
 #include <opm/input/eclipse/EclipseState/Tables/SaltpvdTable.hpp>
 #include <opm/input/eclipse/EclipseState/Tables/SaltSolubilityTable.hpp>
@@ -137,6 +139,7 @@ std::optional<JFunc> make_jfunc(const Deck& deck) {
         m_aqudims( Aqudims(deck)),
         m_tlmixpar( deck ),
         m_ppcwmax( deck ),
+        m_biofpara( deck ),
         hasImptvd (deck.hasKeyword("IMPTVD")),
         hasEnptvd (deck.hasKeyword("ENPTVD")),
         hasEqlnum (deck.hasKeyword("EQLNUM")),
@@ -333,6 +336,7 @@ std::optional<JFunc> make_jfunc(const Deck& deck) {
         result.m_diff_mole_fraction = true;
         result.m_tlmixpar = TLMixpar::serializationTestObject();
         result.m_ppcwmax = Ppcwmax::serializationTestObject();
+        result.m_biofpara = Biofpara::serializationTestObject();
         return result;
     }
 
@@ -474,7 +478,9 @@ std::optional<JFunc> make_jfunc(const Deck& deck) {
         addTables( "SALTPVD", m_eqldims.getNumEquilRegions());
         addTables( "SALTSOL", m_tabdims.getNumPVTTables());
         addTables( "PERMFACT",  m_tabdims.getNumPVTTables());
+        addTables( "PERMPORO",  m_tabdims.getNumSatTables());
         addTables( "PCFACT",  m_tabdims.getNumSatTables());
+        addTables( "PEFACT",  m_tabdims.getNumSatTables());
 
         addTables( "AQUTAB", m_aqudims.getNumInfluenceTablesCT());
         {
@@ -544,7 +550,9 @@ std::optional<JFunc> make_jfunc(const Deck& deck) {
         initSimpleTableContainer<SaltvdTable>(deck, "SALTVD" , m_eqldims.getNumEquilRegions());
         initSimpleTableContainer<SaltsolTable>(deck, "SALTSOL" , m_tabdims.getNumPVTTables());
         initSimpleTableContainer<PermfactTable>(deck, "PERMFACT" , m_tabdims.getNumPVTTables());
+        initSimpleTableContainer<PermporoTable>(deck, "PERMPORO" , m_tabdims.getNumSatTables());
         initSimpleTableContainer<PcfactTable>(deck, "PCFACT" , m_tabdims.getNumSatTables());
+        initSimpleTableContainer<PefactTable>(deck, "PEFACT" , m_tabdims.getNumSatTables());
         initSimpleTableContainer<AqutabTable>(deck, "AQUTAB" , m_aqudims.getNumInfluenceTablesCT());
         {
             size_t numEndScaleTables = ParserKeywords::ENDSCALE::NTENDP::defaultValue;
@@ -959,9 +967,17 @@ std::optional<JFunc> make_jfunc(const Deck& deck) {
     const TableContainer& TableManager::getPcfactTables() const {
         return getTables("PCFACT");
     }
+
+    const TableContainer& TableManager::getPefactTables() const {
+        return getTables("PEFACT");
+    }
     
     const TableContainer& TableManager::getPermfactTables() const {
         return getTables("PERMFACT");
+    }
+
+    const TableContainer& TableManager::getPermporoTables() const {
+        return getTables("PERMPORO");
     }
 
     const TableContainer& TableManager::getEnkrvdTables() const {
@@ -1193,6 +1209,10 @@ std::optional<JFunc> make_jfunc(const Deck& deck) {
         return m_ppcwmax;
     }
 
+    const Biofpara& TableManager::getBiofpara() const {
+        return m_biofpara;
+    }
+
     const JFunc& TableManager::getJFunc() const {
         if (!this->jfunc.has_value())
             throw std::invalid_argument("Cannot get JFUNC table when JFUNC not in deck");
@@ -1299,6 +1319,7 @@ std::optional<JFunc> make_jfunc(const Deck& deck) {
                m_skprpolyTables == data.m_skprpolyTables &&
                m_tlmixpar == data.m_tlmixpar &&
                m_ppcwmax == data.m_ppcwmax &&
+               m_biofpara == data.m_biofpara &&
                m_tabdims == data.m_tabdims &&
                m_regdims == data.m_regdims &&
                m_eqldims == data.m_eqldims &&

@@ -237,6 +237,8 @@ const std::vector<Inplace::Phase>& Inplace::mixingPhases()
         Inplace::Phase::CO2MassInGasPhaseEffectiveUnTrapped,
         Inplace::Phase::CO2MassInGasPhaseMaximumTrapped,
         Inplace::Phase::CO2MassInGasPhaseMaximumUnTrapped,
+        Inplace::Phase::BiofilmMass,
+        Inplace::Phase::WaterMass,
     };
 
     return mixingPhases_;

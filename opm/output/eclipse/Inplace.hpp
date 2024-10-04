@@ -75,6 +75,8 @@ public:
         CO2MassInGasPhaseEffectiveUnTrapped = 31,
         CO2MassInGasPhaseMaximumTrapped = 32,
         CO2MassInGasPhaseMaximumUnTrapped = 33,
+        BiofilmMass = 34,
+        WaterMass = 35,
     };
 
     /// Create non-defaulted object suitable for testing the serialisation
