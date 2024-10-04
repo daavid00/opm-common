@@ -167,6 +167,8 @@ struct SummaryConfigContext {
          {"GMUS",     {"RGMUS", "FGMUS"}},
          {"GKTR",     {"RGKTR", "FGKTR"}},
          {"GKMO",     {"RGKMO", "FGKMO"}},
+         {"BIP",      {"RBIP",  "FBIP"}},
+         {"WMIP",     {"RWMIP", "FWMIP"}},
     };
 
     using keyword_set = std::unordered_set<std::string>;

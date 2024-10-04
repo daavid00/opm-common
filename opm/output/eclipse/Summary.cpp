@@ -2862,6 +2862,8 @@ static const auto single_values_units = UnitTable {
     {"FGKMO"    , Opm::UnitSystem::measure::mass },
     {"FGMST"    , Opm::UnitSystem::measure::mass },
     {"FGMUS"    , Opm::UnitSystem::measure::mass },
+    {"FBIP"     , Opm::UnitSystem::measure::mass },
+    {"FWMIP"    , Opm::UnitSystem::measure::mass },
 };
 
 static const auto region_units = UnitTable {
@@ -2893,6 +2895,8 @@ static const auto region_units = UnitTable {
     {"RGKMO" , Opm::UnitSystem::measure::mass },
     {"RGMST" , Opm::UnitSystem::measure::mass },
     {"RGMUS" , Opm::UnitSystem::measure::mass },
+    {"RBIP"  , Opm::UnitSystem::measure::mass },
+    {"RWMIP" , Opm::UnitSystem::measure::mass },
 };
 
 static const auto interregion_units = UnitTable {
