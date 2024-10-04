@@ -3130,6 +3130,7 @@ static const auto single_values_units = UnitTable {
     {"FMUIP"    , Opm::UnitSystem::measure::mass },
     {"FMBIP"    , Opm::UnitSystem::measure::mass },
     {"FMCIP"    , Opm::UnitSystem::measure::mass },
+    {"FWMIP"    , Opm::UnitSystem::measure::mass },
 };
 
 static const auto region_units = UnitTable {
@@ -3166,6 +3167,7 @@ static const auto region_units = UnitTable {
     {"RMUIP" , Opm::UnitSystem::measure::mass },
     {"RMBIP" , Opm::UnitSystem::measure::mass },
     {"RMCIP" , Opm::UnitSystem::measure::mass },
+    {"RWMIP" , Opm::UnitSystem::measure::mass },
 };
 
 static const auto interregion_units = UnitTable {

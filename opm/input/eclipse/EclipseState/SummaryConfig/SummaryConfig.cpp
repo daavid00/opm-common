@@ -172,6 +172,7 @@ struct SummaryConfigContext {
          {"MUIP",     {"RMUIP", "FMUIP"}},
          {"MBIP",     {"RMBIP", "FMBIP"}},
          {"MCIP",     {"RMCIP", "FMCIP"}},
+         {"WMIP",     {"RWMIP", "FWMIP"}},
     };
 
     using keyword_set = std::unordered_set<std::string>;

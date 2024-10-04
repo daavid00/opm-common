@@ -269,6 +269,7 @@ namespace Opm {
             serializer(m_diff_mole_fraction);
             serializer(m_tlmixpar);
             serializer(m_ppcwmax);
+
             if (!serializer.isSerializing()) {
                 m_simpleTables = simpleTables;
                 if (split.plyshMax > 0) {
