@@ -25,6 +25,7 @@
 
 #include <opm/input/eclipse/EclipseState/Tables/AqutabTable.hpp>
 #include <opm/input/eclipse/EclipseState/Tables/BiofilmTable.hpp>
+#include <opm/input/eclipse/EclipseState/Tables/BiofmobtTable.hpp>
 #include <opm/input/eclipse/EclipseState/Tables/DiffMICPTable.hpp>
 #include <opm/input/eclipse/EclipseState/Tables/EnkrvdTable.hpp>
 #include <opm/input/eclipse/EclipseState/Tables/EnptvdTable.hpp>
@@ -1970,19 +1971,19 @@ PcfactTable::getPcMultiplierColumn() const
 
 BiofilmTable::BiofilmTable(const DeckItem& item, const int tableID)
 {
-    m_schema.addColumn(ColumnSchema("DENSITY_BIOFILM", Table::RANDOM, Table::DEFAULT_NONE));
-    m_schema.addColumn(ColumnSchema("MICROBIAL_DEATH_RATE", Table::RANDOM, Table::DEFAULT_NONE));
-    m_schema.addColumn(ColumnSchema("MAXIMUM_GROWTH_RATE", Table::RANDOM, Table::DEFAULT_NONE));
-    m_schema.addColumn(ColumnSchema("HALF_VELOCITY_OXYGEN", Table::RANDOM, Table::DEFAULT_NONE));
-    m_schema.addColumn(ColumnSchema("YIELD_GROWTH_COEFFICIENT", Table::RANDOM, Table::DEFAULT_NONE));
-    m_schema.addColumn(ColumnSchema("OXYGEN_CONSUMPTION_FACTOR", Table::RANDOM, Table::DEFAULT_NONE));
-    m_schema.addColumn(ColumnSchema("MICROBIAL_ATTACHMENT_RATE", Table::RANDOM, Table::DEFAULT_NONE));
-    m_schema.addColumn(ColumnSchema("DETACHMENT_RATE", Table::RANDOM, Table::DEFAULT_NONE));
-    m_schema.addColumn(ColumnSchema("DETACHMENT_EXPONENT", Table::RANDOM, Table::DEFAULT_NONE));
-    m_schema.addColumn(ColumnSchema("MAXIMUM_UREA_UTILIZATION", Table::RANDOM, Table::DEFAULT_NONE));
-    m_schema.addColumn(ColumnSchema("HALF_VELOCITY_UREA", Table::RANDOM, Table::DEFAULT_NONE));
-    m_schema.addColumn(ColumnSchema("DENSITY_CALCITE", Table::RANDOM, Table::DEFAULT_NONE));
-    m_schema.addColumn(ColumnSchema("YIELD_UREA_TO_CALCITE_COEFFICIENT", Table::RANDOM, Table::DEFAULT_NONE));
+    m_schema.addColumn(ColumnSchema("DENSITY_BIOFILM", Table::RANDOM, Table::DEFAULT_CONST));
+    m_schema.addColumn(ColumnSchema("MICROBIAL_DEATH_RATE", Table::RANDOM, Table::DEFAULT_CONST));
+    m_schema.addColumn(ColumnSchema("MAXIMUM_GROWTH_RATE", Table::RANDOM, Table::DEFAULT_CONST));
+    m_schema.addColumn(ColumnSchema("HALF_VELOCITY_OXYGEN", Table::RANDOM, Table::DEFAULT_CONST));
+    m_schema.addColumn(ColumnSchema("YIELD_GROWTH_COEFFICIENT", Table::RANDOM, Table::DEFAULT_CONST));
+    m_schema.addColumn(ColumnSchema("OXYGEN_CONSUMPTION_FACTOR", Table::RANDOM, Table::DEFAULT_CONST));
+    m_schema.addColumn(ColumnSchema("MICROBIAL_ATTACHMENT_RATE", Table::RANDOM, Table::DEFAULT_CONST));
+    m_schema.addColumn(ColumnSchema("DETACHMENT_RATE", Table::RANDOM, Table::DEFAULT_CONST));
+    m_schema.addColumn(ColumnSchema("DETACHMENT_EXPONENT", Table::RANDOM, Table::DEFAULT_CONST));
+    m_schema.addColumn(ColumnSchema("MAXIMUM_UREA_UTILIZATION", Table::RANDOM, Table::DEFAULT_CONST));
+    m_schema.addColumn(ColumnSchema("HALF_VELOCITY_UREA", Table::RANDOM, Table::DEFAULT_CONST));
+    m_schema.addColumn(ColumnSchema("DENSITY_CALCITE", Table::RANDOM, Table::DEFAULT_CONST));
+    m_schema.addColumn(ColumnSchema("YIELD_UREA_TO_CALCITE_COEFFICIENT", Table::RANDOM, Table::DEFAULT_CONST));
 
     SimpleTable::init("BIOFPARA", item, tableID);
 }
@@ -2006,7 +2007,7 @@ BiofilmTable::getMaximumGrowthRate() const
 }
 
 const TableColumn&
-BiofilmTable::getHalfVelocityOxygen() const
+BiofilmTable::gethalfVelocityGrowth() const
 {
     return SimpleTable::getColumn(3);
 }
@@ -2063,6 +2064,26 @@ const TableColumn&
 BiofilmTable::getYieldUreaToCalciteCoefficient() const
 {
     return SimpleTable::getColumn(12);
+}
+
+BiofmobtTable::BiofmobtTable(const DeckItem& item, const int tableID)
+{
+    m_schema.addColumn(ColumnSchema("TEMPERATURE", Table::STRICTLY_INCREASING, Table::DEFAULT_NONE));
+    m_schema.addColumn(ColumnSchema("BIOFMOBT", Table::RANDOM, Table::DEFAULT_NONE));
+
+    SimpleTable::init("BIOFMOBT", item, tableID);
+}
+
+const TableColumn&
+BiofmobtTable::getTemperatureColumn() const
+{
+    return SimpleTable::getColumn(0);
+}
+
+const TableColumn&
+BiofmobtTable::getBiofmobtColumn() const
+{
+    return SimpleTable::getColumn(1);
 }
 
 DiffMICPTable::DiffMICPTable(const DeckItem& item, const int tableID)
