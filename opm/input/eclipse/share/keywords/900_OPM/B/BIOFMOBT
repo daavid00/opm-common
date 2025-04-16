@@ -1,5 +1,5 @@
 {
-  "name": "PCFACT",
+  "name": "BIOFMOBT",
   "sections": [
     "PROPS"
   ],
@@ -7,14 +7,15 @@
     "keyword": "TABDIMS",
     "item": "NTSFUN"
   },
+  "requires": ["BIOFILM"],
   "items": [
    {
       "name": "DATA",
       "value_type": "DOUBLE",
       "size_type": "ALL",
       "dimension": [
-        "1",
-        "1"
+        "Temperature",
+        "1/Viscosity"
       ]
    }
   ]

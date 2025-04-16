@@ -1239,6 +1239,7 @@ if(ENABLE_ECL_INPUT)
        opm/input/eclipse/EclipseState/EndpointScaling.hpp
        opm/input/eclipse/EclipseState/TracerConfig.hpp
        opm/input/eclipse/EclipseState/WagHysteresisConfig.hpp
+       opm/input/eclipse/EclipseState/Tables/BiofmobtTable.hpp
        opm/input/eclipse/EclipseState/Tables/DenT.hpp
        opm/input/eclipse/EclipseState/Tables/JouleThomson.hpp
        opm/input/eclipse/EclipseState/Tables/SimpleTable.hpp
