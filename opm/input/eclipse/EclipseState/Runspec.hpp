@@ -510,6 +510,7 @@ public:
     bool mech() const noexcept;
     bool temp() const noexcept;
     bool compositional() const noexcept;
+    bool biof() const noexcept;
 
     bool operator==(const Runspec& data) const;
     static bool rst_cmp(const Runspec& full_state, const Runspec& rst_state);
@@ -540,6 +541,7 @@ public:
         serializer(m_micp);
         serializer(m_mech);
         serializer(m_temp);
+        serializer(m_biof);
     }
 
 private:
@@ -566,6 +568,7 @@ private:
     bool m_micp{false};
     bool m_mech{false};
     bool m_temp{false};
+    bool m_biof{false};
 };
 
 std::size_t declaredMaxRegionID(const Runspec& rspec);
