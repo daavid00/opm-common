@@ -1,0 +1,12 @@
+{
+  "name": "PARTICLR",
+  "sections": [
+    "SOLUTION"
+  ],
+  "requires": ["PARTICLE", "WATER"],
+  "description": "Initial particle volume fraction",
+  "data": {
+    "value_type": "DOUBLE",
+    "dimension": "1"
+  }
+}

@@ -1,0 +1,12 @@
+{
+  "name": "PARTICLS",
+  "sections": [
+    "SOLUTION"
+  ],
+  "requires": ["PARTICLE", "WATER"],
+  "description": "Initial particle concentration",
+  "data": {
+    "value_type": "DOUBLE",
+    "dimension": "Concentration"
+  }
+}

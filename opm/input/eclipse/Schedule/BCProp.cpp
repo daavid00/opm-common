@@ -89,6 +89,9 @@ BCComponent component(const std::string& s) {
 
     if (s == "UREA")
         return BCComponent::UREA;
+    
+    if (s == "PARTICLE")
+        return BCComponent::PARTICLE;
 
     if (s == "NONE")
         return BCComponent::NONE;
