@@ -41,6 +41,7 @@ enum class SourceComponent {
      MICR,
      OXYG,
      UREA,
+     PARTICLE,
      NONE
 };
 

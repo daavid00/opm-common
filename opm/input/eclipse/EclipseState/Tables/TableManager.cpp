@@ -69,6 +69,12 @@
 #include <opm/input/eclipse/EclipseState/Tables/RtempvdTable.hpp>
 #include <opm/input/eclipse/EclipseState/Tables/RvvdTable.hpp>
 #include <opm/input/eclipse/EclipseState/Tables/RvwvdTable.hpp>
+#include <opm/input/eclipse/EclipseState/Tables/PcfactTable.hpp>
+#include <opm/input/eclipse/EclipseState/Tables/PermfactTable.hpp>
+#include <opm/input/eclipse/EclipseState/Tables/BiofilmTable.hpp>
+#include <opm/input/eclipse/EclipseState/Tables/DiffMICPTable.hpp>
+#include <opm/input/eclipse/EclipseState/Tables/ParticleTable.hpp>
+#include <opm/input/eclipse/EclipseState/Tables/SaltvdTable.hpp>
 #include <opm/input/eclipse/EclipseState/Tables/SaltpvdTable.hpp>
 #include <opm/input/eclipse/EclipseState/Tables/SaltSolubilityTable.hpp>
 #include <opm/input/eclipse/EclipseState/Tables/SaltvdTable.hpp>
@@ -481,6 +487,7 @@ std::optional<JFunc> make_jfunc(const Deck& deck) {
         addTables( "PERMFACT",  m_tabdims.getNumSatTables());
         addTables( "PCFACT",  m_tabdims.getNumSatTables());
         addTables( "BIOFPARA", m_tabdims.getNumSatTables());
+        addTables( "PARTPARA", m_tabdims.getNumSatTables());
         addTables( "DIFFMICP", m_tabdims.getNumPVTTables());
 
         addTables( "AQUTAB", m_aqudims.getNumInfluenceTablesCT());
@@ -552,6 +559,7 @@ std::optional<JFunc> make_jfunc(const Deck& deck) {
         initSimpleTableContainer<PermfactTable>(deck, "PERMFACT" , m_tabdims.getNumSatTables());
         initSimpleTableContainer<PcfactTable>(deck, "PCFACT" , m_tabdims.getNumSatTables());
         initSimpleTableContainer<BiofilmTable>(deck, "BIOFPARA" , m_tabdims.getNumSatTables());
+        initSimpleTableContainer<ParticleTable>(deck, "PARTPARA" , m_tabdims.getNumSatTables());
         initSimpleTableContainer<DiffMICPTable>(deck, "DIFFMICP" , m_tabdims.getNumPVTTables());
         initSimpleTableContainer<AqutabTable>(deck, "AQUTAB" , m_aqudims.getNumInfluenceTablesCT());
         {
@@ -1108,6 +1116,10 @@ std::optional<JFunc> make_jfunc(const Deck& deck) {
 
     const TableContainer& TableManager::getBiofilmTables() const {
         return getTables("BIOFPARA");
+    }
+
+    const TableContainer& TableManager::getParticleTables() const {
+        return getTables("PARTPARA");
     }
 
     const TableContainer& TableManager::getDiffMICPTables() const {

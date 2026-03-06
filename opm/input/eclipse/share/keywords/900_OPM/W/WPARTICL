@@ -1,0 +1,17 @@
+{
+  "name": "WPARTICL",
+  "sections": [
+    "SCHEDULE"
+  ],
+  "items": [
+    {
+      "name": "WELL",
+      "value_type": "STRING"
+    },
+    {
+      "name": "PARTICLE_CONCENTRATION",
+      "value_type": "DOUBLE",
+      "dimension": "Concentration"
+    }
+  ]
+}
