@@ -739,6 +739,9 @@ template<> constexpr
 measure rate_unit< rt::urea >() { return measure::mass_rate; }
 
 template<> constexpr
+measure rate_unit< rt::particle >() { return measure::mass_rate; }
+
+template<> constexpr
 measure rate_unit < rt::productivity_index_water > () { return measure::liquid_productivity_index; }
 
 template<> constexpr
@@ -3523,6 +3526,26 @@ static const auto funs = std::unordered_map<std::string, ofun> {
     { "CMUPTL", mul( cratel< rt::urea, producer >, duration) },
     { "FMUPR", rate< rt::urea, producer > },
     { "FMUPT", mul( rate< rt::urea, producer >, duration ) },
+
+    // Particles
+    { "WMPIR", rate< rt::particle, injector > },
+    { "WMPIT", mul( rate< rt::particle, injector >, duration ) },
+    { "GMPIT", mul( rate< rt::particle, injector >, duration ) },
+    { "CMPIR", crate< rt::particle, injector > },
+    { "CMPIT",  mul( crate< rt::particle, injector >, duration) },
+    { "CMPIRL", cratel< rt::particle, injector> },
+    { "CMPITL", mul( cratel< rt::particle, injector>, duration) },
+    { "FMPIR", rate< rt::particle, injector > },
+    { "FMPIT", mul( rate< rt::particle, injector >, duration ) },
+    { "WMPPR", rate< rt::particle, producer > },
+    { "WMPPT", mul( rate< rt::particle, producer >, duration ) },
+    { "GMPPT", mul( rate< rt::particle, producer >, duration ) },
+    { "CMPPR", crate< rt::particle, producer > },
+    { "CMPPT",  mul( crate< rt::particle, producer >, duration) },
+    { "CMPPRL", cratel< rt::particle, producer > },
+    { "CMPPTL", mul( cratel< rt::particle, producer >, duration) },
+    { "FMPPR", rate< rt::particle, producer > },
+    { "FMPPT", mul( rate< rt::particle, producer >, duration ) },
 };
 
 static const auto single_values_units = UnitTable {
@@ -3580,6 +3603,8 @@ static const auto single_values_units = UnitTable {
     {"FMBIP"    , Opm::UnitSystem::measure::mass },
     {"FMCIP"    , Opm::UnitSystem::measure::mass },
     {"FAMIP"    , Opm::UnitSystem::measure::mass },
+    {"FRPIP"    , Opm::UnitSystem::measure::mass },
+    {"FSPIP"    , Opm::UnitSystem::measure::mass },
 };
 
 static const auto region_units = UnitTable {
@@ -3617,6 +3642,8 @@ static const auto region_units = UnitTable {
     {"RMBIP" , Opm::UnitSystem::measure::mass },
     {"RMCIP" , Opm::UnitSystem::measure::mass },
     {"RAMIP" , Opm::UnitSystem::measure::mass },
+    {"RRPIP" , Opm::UnitSystem::measure::mass },
+    {"RSPIP" , Opm::UnitSystem::measure::mass },
 };
 
 static const auto interregion_units = UnitTable {
@@ -3781,6 +3808,10 @@ static const auto block_units = UnitTable {
     {"BMUIP"     , Opm::UnitSystem::measure::mass},
     {"BMBIP"     , Opm::UnitSystem::measure::mass},
     {"BMCIP"     , Opm::UnitSystem::measure::mass},
+
+    // Particles
+    {"BRPIP"     , Opm::UnitSystem::measure::mass},
+    {"BSPIP"     , Opm::UnitSystem::measure::mass},
 };
 
 static const auto aquifer_units = UnitTable {

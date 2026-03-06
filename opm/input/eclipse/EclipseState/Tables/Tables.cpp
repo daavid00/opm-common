@@ -39,6 +39,7 @@
 #include <opm/input/eclipse/EclipseState/Tables/MsfnTable.hpp>
 #include <opm/input/eclipse/EclipseState/Tables/OilvisctTable.hpp>
 #include <opm/input/eclipse/EclipseState/Tables/OverburdTable.hpp>
+#include <opm/input/eclipse/EclipseState/Tables/ParticleTable.hpp>
 #include <opm/input/eclipse/EclipseState/Tables/PbvdTable.hpp>
 #include <opm/input/eclipse/EclipseState/Tables/PdvdTable.hpp>
 #include <opm/input/eclipse/EclipseState/Tables/PcfactTable.hpp>
@@ -2016,6 +2017,33 @@ const TableColumn&
 PcfactTable::getPcMultiplierColumn() const
 {
     return SimpleTable::getColumn(1);
+}
+
+ParticleTable::ParticleTable(const DeckItem& item, const int tableID)
+{
+    m_schema.addColumn(ColumnSchema("DENSITY_PARTICLE", Table::RANDOM, Table::DEFAULT_CONST));
+    m_schema.addColumn(ColumnSchema("PARTICLE_ATTACHMENT_RATE", Table::RANDOM, Table::DEFAULT_CONST));
+    m_schema.addColumn(ColumnSchema("PARTICLE_DETACHMENT_RATE", Table::RANDOM, Table::DEFAULT_CONST));
+
+    SimpleTable::init("PARTPARA", item, tableID);
+}
+
+const TableColumn&
+ParticleTable::getDensityParticle() const
+{
+    return SimpleTable::getColumn(0);
+}
+
+const TableColumn&
+ParticleTable::getParticleAttachmentRate() const
+{
+    return SimpleTable::getColumn(1);
+}
+
+const TableColumn&
+ParticleTable::getParticleDetachmentRate() const
+{
+    return SimpleTable::getColumn(2);
 }
 
 BiofilmTable::BiofilmTable(const DeckItem& item, const int tableID)
