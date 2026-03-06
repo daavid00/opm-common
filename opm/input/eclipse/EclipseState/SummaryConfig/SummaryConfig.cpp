@@ -507,6 +507,8 @@ namespace {
 
             "MMIR", "MOIR", "MUIR", "MMPR", "MOPR", "MUPR",
 
+            "MPIR", "MPPR",
+
             // Filtrate injection rates
             "FCFFVIR", "FCWFVIR", "FCFVIR",
 
@@ -553,7 +555,7 @@ namespace {
             // those cumulative values to the summary. Also in is_total() from SummaryState.cpp.
             "AQTG",
 
-            "MMIT", "MOIT", "MUIT", "MMPT", "MOPT", "MUPT",
+            "MMIT", "MOIT", "MUIT", "MMPT", "MOPT", "MUPT", "MPIT", "MPPT",
 
             // Filtrate injection volumes
             "FCFFVIT", "FCWFVIT", "FCFVIT",
@@ -2774,6 +2776,8 @@ bool SummaryConfig::require3DField(const std::string& keyword) const
          {"MBIP",     {"RMBIP", "FMBIP"}},
          {"MCIP",     {"RMCIP", "FMCIP"}},
          {"AMIP",     {"RAMIP", "FAMIP"}},
+         {"RPIP",     {"RRPIP", "FRPIP"}},
+         {"SPIP",     {"RSPIP", "FSPIP"}},
     };
 
     auto iter = required_fields.find(keyword);

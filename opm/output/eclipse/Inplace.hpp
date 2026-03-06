@@ -81,6 +81,8 @@ public:
         BiofilmMass = 37,
         CalciteMass = 38,
         WaterMass = 39,
+        RetainedParticleMass = 40,
+        SuspendedParticleMass = 41,
     };
 
     /// Create non-defaulted object suitable for testing the serialisation

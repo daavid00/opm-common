@@ -79,6 +79,7 @@ namespace Opm { namespace data {
                 mass_gas         = (1 << 24),
                 mass_wat         = (1 << 25),
                 wat_frac         = (1 << 26),
+                particle         = (1 << 27)
             };
 
             using enum_size = std::underlying_type< opt >::type;
@@ -140,6 +141,7 @@ namespace Opm { namespace data {
                 serializer(mass_gas);
                 serializer(mass_wat);
                 serializer(wat_frac);
+                serializer(particle);
             }
 
             static Rates serializationTestObject()
@@ -171,6 +173,7 @@ namespace Opm { namespace data {
                 rat1.set(opt::mass_gas, 24.0);
                 rat1.set(opt::mass_wat, 25.0);
                 rat1.set(opt::wat_frac, 26.0);
+                rat1.set(opt::particle, 27.0);
                 rat1.tracer.insert({"test_tracer", 1.0});
 
                 return rat1;
@@ -211,6 +214,7 @@ namespace Opm { namespace data {
             double mass_gas = 0.0;
             double mass_wat = 0.0;
             double wat_frac = 0.0;
+            double particle = 0.0;
     };
 
     struct ConnectionFiltrate
@@ -1388,7 +1392,8 @@ namespace Opm { namespace data {
              vaporized_water == rate.vaporized_water &&
              mass_gas == rate.mass_gas &&
              mass_wat == rate.mass_wat &&
-             wat_frac == rate.wat_frac;
+             wat_frac == rate.wat_frac &&
+             particle == rate.particle;
     }
 
 
@@ -1431,6 +1436,7 @@ namespace Opm { namespace data {
             case opt::mass_gas: return this->mass_gas;
             case opt::mass_wat: return this->mass_wat;
             case opt::wat_frac: return this->wat_frac;
+            case opt::particle: return this->particle;
         }
 
         throw std::invalid_argument(
@@ -1506,6 +1512,7 @@ namespace Opm { namespace data {
             buffer.write(this->mass_gas);
             buffer.write(this->mass_wat);
             buffer.write(this->wat_frac);
+            buffer.write(this->particle);
     }
 
     template <class MessageBufferType>
@@ -1675,6 +1682,7 @@ namespace Opm { namespace data {
             buffer.read(this->mass_gas);
             buffer.read(this->mass_wat);
             buffer.read(this->wat_frac);
+            buffer.read(this->particle);
     }
 
     template <class MessageBufferType>

@@ -312,6 +312,7 @@ list(APPEND MAIN_SOURCE_FILES
   opm/input/eclipse/Schedule/Well/WellKeywordHandlers.cpp
   opm/input/eclipse/Schedule/Well/WellMatcher.cpp
   opm/input/eclipse/Schedule/Well/WellMICPProperties.cpp
+  opm/input/eclipse/Schedule/Well/WellParticleProperties.cpp
   opm/input/eclipse/Schedule/Well/WellPolymerProperties.cpp
   opm/input/eclipse/Schedule/Well/WellProductionProperties.cpp
   opm/input/eclipse/Schedule/Well/WellPropertiesKeywordHandlers.cpp
@@ -1035,6 +1036,7 @@ list(APPEND PUBLIC_HEADER_FILES
   opm/input/eclipse/EclipseState/Tables/MsfnTable.hpp
   opm/input/eclipse/EclipseState/Tables/OilvisctTable.hpp
   opm/input/eclipse/EclipseState/Tables/OverburdTable.hpp
+  opm/input/eclipse/EclipseState/Tables/ParticleTable.hpp
   opm/input/eclipse/EclipseState/Tables/PbvdTable.hpp
   opm/input/eclipse/EclipseState/Tables/PcfactTable.hpp
   opm/input/eclipse/EclipseState/Tables/PdvdTable.hpp
@@ -1237,6 +1239,7 @@ list(APPEND PUBLIC_HEADER_FILES
   opm/input/eclipse/Schedule/Well/WellInjectionControls.hpp
   opm/input/eclipse/Schedule/Well/WellMICPProperties.hpp
   opm/input/eclipse/Schedule/Well/WellMatcher.hpp
+  opm/input/eclipse/Schedule/Well/WellParticleProperties.hpp
   opm/input/eclipse/Schedule/Well/WellPolymerProperties.hpp
   opm/input/eclipse/Schedule/Well/WellProductionControls.hpp
   opm/input/eclipse/Schedule/Well/WellTestConfig.hpp

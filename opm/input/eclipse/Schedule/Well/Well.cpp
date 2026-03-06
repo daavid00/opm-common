@@ -38,6 +38,7 @@
 #include <opm/input/eclipse/Schedule/Well/WellConnections.hpp>
 #include <opm/input/eclipse/Schedule/Well/WellEconProductionLimits.hpp>
 #include <opm/input/eclipse/Schedule/Well/WellFoamProperties.hpp>
+#include <opm/input/eclipse/Schedule/Well/WellParticleProperties.hpp>
 #include <opm/input/eclipse/Schedule/Well/WellMICPProperties.hpp>
 #include <opm/input/eclipse/Schedule/Well/WellPolymerProperties.hpp>
 #include <opm/input/eclipse/Schedule/Well/WellTracerProperties.hpp>
@@ -319,6 +320,7 @@ Well::Well(const RestartIO::RstWell& rst_well,
     micp_properties(std::make_shared<WellMICPProperties>()),
     brine_properties(std::make_shared<WellBrineProperties>()),
     species_properties(std::make_shared<WellTracerProperties>()), // NOTE: well tracer facilities used for geochemistry
+    particle_properties(std::make_shared<WellParticleProperties>()),
     tracer_properties(std::make_shared<WellTracerProperties>()),
     connections(std::make_shared<WellConnections>(order_from_int(rst_well.completion_ordering), headI, headJ)),
     production(std::make_shared<WellProductionProperties>(unit_system_arg, wname)),
@@ -551,6 +553,7 @@ Well::Well(const std::string& wname_arg,
     micp_properties(std::make_shared<WellMICPProperties>()),
     brine_properties(std::make_shared<WellBrineProperties>()),
     species_properties(std::make_shared<WellTracerProperties>()), // NOTE: well tracer facilities used for geochemistry
+    particle_properties(std::make_shared<WellParticleProperties>()),
     tracer_properties(std::make_shared<WellTracerProperties>()),
     connections(std::make_shared<WellConnections>(ordering_arg, headI, headJ)),
     production(std::make_shared<WellProductionProperties>(*unit_system, wname)),
@@ -603,6 +606,7 @@ Well Well::serializationTestObject()
     result.micp_properties =  std::make_shared<WellMICPProperties>(WellMICPProperties::serializationTestObject());
     result.brine_properties = std::make_shared<WellBrineProperties>(WellBrineProperties::serializationTestObject());
     result.species_properties = std::make_shared<WellTracerProperties>(WellTracerProperties::serializationTestObject());
+    result.particle_properties = std::make_shared<WellParticleProperties>(WellParticleProperties::serializationTestObject());
     result.tracer_properties = std::make_shared<WellTracerProperties>(WellTracerProperties::serializationTestObject());
     result.connections = std::make_shared<WellConnections>(WellConnections::serializationTestObject());
     result.production = std::make_shared<Well::WellProductionProperties>(Well::WellProductionProperties::serializationTestObject());
@@ -735,6 +739,23 @@ bool Well::updateMICPProperties(std::shared_ptr<WellMICPProperties> micp_propert
 
     if (*this->micp_properties != *micp_properties_arg) {
         this->micp_properties = std::move(micp_properties_arg);
+        return true;
+    }
+
+    return false;
+}
+
+bool Well::updateParticleProperties(std::shared_ptr<WellParticleProperties> particle_properties_arg)
+{
+    if (this->wtype.producer()) {
+        throw std::runtime_error {
+            fmt::format("Assigning particle injection properties is "
+                        "disallowed for production well {}.", this->name())
+        };
+    }
+
+    if (*this->particle_properties != *particle_properties_arg) {
+        this->particle_properties = std::move(particle_properties_arg);
         return true;
     }
 
@@ -1404,6 +1425,11 @@ const WellBrineProperties& Well::getBrineProperties() const
 const WellTracerProperties& Well::getSpeciesProperties() const
 {
     return *this->species_properties;
+}
+
+const WellParticleProperties& Well::getParticleProperties() const
+{
+    return *this->particle_properties;
 }
 
 const WellTracerProperties& Well::getTracerProperties() const
@@ -2293,6 +2319,7 @@ bool Well::operator==(const Well& data) const
         && (this->getMICPProperties() == data.getMICPProperties())
         && (this->getBrineProperties() == data.getBrineProperties())
         && (this->getSpeciesProperties() == data.getSpeciesProperties())
+        && (this->getParticleProperties() == data.getParticleProperties())
         && (this->getTracerProperties() == data.getTracerProperties())
         && (this->getProductionProperties() == data.getProductionProperties())
         && (this->getInjectionProperties() == data.getInjectionProperties())
