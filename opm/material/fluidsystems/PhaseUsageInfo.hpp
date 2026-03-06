@@ -149,6 +149,10 @@ public:
         return has_biofilm;
     }
 
+    OPM_HOST_DEVICE bool hasParticle() const noexcept {
+        return has_particle;
+    }
+
     OPM_HOST_DEVICE bool hasMICP() const noexcept {
         return has_micp;
     }
@@ -179,6 +183,7 @@ private:
     bool has_biofilm{};
     bool has_micp{};
     bool has_co2_or_h2store{};
+    bool has_particle{};
 
     //  updating the mapping between active and canonical phase indices
     void updateIndexMapping_();

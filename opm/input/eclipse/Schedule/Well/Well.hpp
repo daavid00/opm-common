@@ -64,6 +64,7 @@ struct WellBrineProperties;
 class WellEconProductionLimits;
 struct WellFoamProperties;
 struct WellMICPProperties;
+struct WellParticleProperties;
 struct WellPolymerProperties;
 class WellSegments;
 class WellTracerProperties;
@@ -483,6 +484,7 @@ public:
     const WellPolymerProperties& getPolymerProperties() const;
     const WellMICPProperties& getMICPProperties() const;
     const WellBrineProperties& getBrineProperties() const;
+    const WellParticleProperties& getParticleProperties() const;
     const WellTracerProperties& getTracerProperties() const;
     const WVFPDP& getWVFPDP() const;
     const WVFPEXP& getWVFPEXP() const;
@@ -544,6 +546,7 @@ public:
     bool updatePolymerProperties(std::shared_ptr<WellPolymerProperties> polymer_properties);
     bool updateMICPProperties(std::shared_ptr<WellMICPProperties> micp_properties);
     bool updateBrineProperties(std::shared_ptr<WellBrineProperties> brine_properties);
+    bool updateParticleProperties(std::shared_ptr<WellParticleProperties> particle_properties);
     bool updateEconLimits(std::shared_ptr<WellEconProductionLimits> econ_limits);
     bool updateProduction(std::shared_ptr<WellProductionProperties> production);
     bool updateInjection(std::shared_ptr<WellInjectionProperties> injection);
@@ -718,6 +721,7 @@ private:
     std::shared_ptr<WellPolymerProperties> polymer_properties{};
     std::shared_ptr<WellMICPProperties> micp_properties{};
     std::shared_ptr<WellBrineProperties> brine_properties{};
+    std::shared_ptr<WellParticleProperties> particle_properties{};
     std::shared_ptr<WellTracerProperties> tracer_properties{};
 
     // The WellConnections object cannot be const because of WELPI and the
