@@ -30,6 +30,7 @@
 #include <opm/input/eclipse/Schedule/Well/WellEconProductionLimits.hpp>
 #include <opm/input/eclipse/Schedule/Well/WellFoamProperties.hpp>
 #include <opm/input/eclipse/Schedule/Well/WellMICPProperties.hpp>
+#include <opm/input/eclipse/Schedule/Well/WellParticleProperties.hpp>
 #include <opm/input/eclipse/Schedule/Well/WellPolymerProperties.hpp>
 #include <opm/input/eclipse/Schedule/Well/WellTracerProperties.hpp>
 #include <opm/input/eclipse/Schedule/Well/WVFPDP.hpp>
@@ -369,6 +370,23 @@ void handleWMICP(HandlerContext& handlerContext)
             auto micp_properties = std::make_shared<WellMICPProperties>( well.getMICPProperties() );
             micp_properties->handleWMICP(record);
             if (well.updateMICPProperties(micp_properties)) {
+                handlerContext.state().wells.update( std::move(well));
+            }
+        }
+    }
+}
+
+void handleWPARTICL(HandlerContext& handlerContext)
+{
+    for (const auto& record : handlerContext.keyword) {
+        const std::string& wellNamePattern = record.getItem("WELL").getTrimmedString(0);
+        const auto well_names = handlerContext.wellNames(wellNamePattern, false);
+
+        for (const auto& well_name : well_names) {
+            auto well = handlerContext.state().wells( well_name );
+            auto particle_properties = std::make_shared<WellParticleProperties>( well.getParticleProperties() );
+            particle_properties->handleWPARTICL(record);
+            if (well.updateParticleProperties(particle_properties)) {
                 handlerContext.state().wells.update( std::move(well));
             }
         }
@@ -755,6 +773,7 @@ getWellPropertiesHandlers()
         { "WMICP"   , &handleWMICP    },
         { "WPIMULT" , &handleWPIMULT  },
         { "WPMITAB" , &handleWPMITAB  },
+        { "WPARTICL", &handleWPARTICL },
         { "WPOLYMER", &handleWPOLYMER },
         { "WSALT"   , &handleWSALT    },
         { "WSKPTAB" , &handleWSKPTAB  },

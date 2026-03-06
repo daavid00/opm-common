@@ -391,6 +391,8 @@ namespace {
             "AQR", "AQRG", "NQR",
 
             "MMIR", "MOIR", "MUIR", "MMPR", "MOPR", "MUPR",
+
+            "MPIR", "MPPR",
         };
 
         return is_in_set(ratekw, keyword.substr(1))
@@ -432,7 +434,7 @@ namespace {
             // those cumulative values to the summary. Also in is_total() from SummaryState.cpp.
             "AQTG",
 
-            "MMIT", "MOIT", "MUIT", "MMPT", "MOPT", "MUPT",
+            "MMIT", "MOIT", "MUIT", "MMPT", "MOPT", "MUPT", "MPIT", "MPPT"
         };
 
         return is_in_set(totalkw, keyword.substr(1))
@@ -2340,6 +2342,8 @@ bool SummaryConfig::require3DField(const std::string& keyword) const
          {"MBIP",     {"RMBIP", "FMBIP"}},
          {"MCIP",     {"RMCIP", "FMCIP"}},
          {"AMIP",     {"RAMIP", "FAMIP"}},
+         {"RPIP",     {"RRPIP", "FRPIP"}},
+         {"SPIP",     {"RSPIP", "FSPIP"}},
     };
 
     auto iter = required_fields.find(keyword);

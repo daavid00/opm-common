@@ -57,6 +57,7 @@ enum class BCComponent {
      MICR,
      OXYG,
      UREA,
+     PARTICLE,
      NONE
 };
 

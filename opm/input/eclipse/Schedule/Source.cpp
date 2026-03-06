@@ -56,6 +56,7 @@ SourceComponent component(const std::string& s)
         {"NONE",    SourceComponent::NONE},
         {"OIL",     SourceComponent::OIL},
         {"OXYG",    SourceComponent::OXYG},
+        {"PARTICLE",SourceComponent::PARTICLE},
         {"POLYMER", SourceComponent::POLYMER},
         {"SOLVENT", SourceComponent::SOLVENT},
         {"UREA",    SourceComponent::UREA},

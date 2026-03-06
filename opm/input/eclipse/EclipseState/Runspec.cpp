@@ -687,6 +687,7 @@ Runspec::Runspec(const Deck& deck)
     , m_mech       (false)
     , m_temp       (false)
     , m_biof       (false)
+    , m_particle  (false)
 {
     if (DeckSection::hasRUNSPEC(deck)) {
         const RUNSPECSection runspecSection{deck};
@@ -826,6 +827,14 @@ Runspec::Runspec(const Deck& deck)
 
             OpmLog::note(msg);
         }
+
+        if (runspecSection.hasKeyword<ParserKeywords::PARTICLE>()) {
+            m_particle = true;
+
+            const std::string msg = "\nSimulation will solve for particle quantities";
+
+            OpmLog::note(msg);
+        }
     }
 }
 
@@ -856,6 +865,7 @@ Runspec Runspec::serializationTestObject()
     result.m_mech = true;
     result.m_temp = true;
     result.m_biof = true;
+    result.m_particle = true;
 
     return result;
 }
@@ -976,6 +986,11 @@ bool Runspec::biof() const noexcept
     return this->m_biof;
 }
 
+bool Runspec::particle() const noexcept
+{
+    return this->m_particle;
+}
+
 std::time_t Runspec::start_time() const noexcept
 {
     return this->m_start_time;
@@ -1026,6 +1041,7 @@ bool Runspec::rst_cmp(const Runspec& full_spec, const Runspec& rst_spec)
         full_spec.m_frac == rst_spec.m_frac &&
         full_spec.m_temp == rst_spec.m_temp &&
         full_spec.m_biof == rst_spec.m_biof &&
+        full_spec.m_particle == rst_spec.m_particle &&
         Welldims::rst_cmp(full_spec.wellDimensions(), rst_spec.wellDimensions());
 }
 
@@ -1056,6 +1072,7 @@ bool Runspec::operator==(const Runspec& data) const
         && (this->m_frac == data.m_frac)
         && (this->m_temp == data.m_temp)
         && (this->m_biof == data.m_biof)
+        && (this->m_particle == data.m_particle)
         ;
 }
 
