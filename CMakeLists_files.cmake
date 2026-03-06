@@ -340,6 +340,7 @@ if(ENABLE_ECL_INPUT)
     opm/input/eclipse/Schedule/Well/WellKeywordHandlers.cpp
     opm/input/eclipse/Schedule/Well/WellMatcher.cpp
     opm/input/eclipse/Schedule/Well/WellMICPProperties.cpp
+    opm/input/eclipse/Schedule/Well/WellParticleProperties.cpp
     opm/input/eclipse/Schedule/Well/WellPolymerProperties.cpp
     opm/input/eclipse/Schedule/Well/WellProductionProperties.cpp
     opm/input/eclipse/Schedule/Well/WellPropertiesKeywordHandlers.cpp
@@ -1321,6 +1322,7 @@ if(ENABLE_ECL_INPUT)
        opm/input/eclipse/EclipseState/Tables/SgofTable.hpp
        opm/input/eclipse/EclipseState/Tables/TracerVdTable.hpp
        opm/input/eclipse/EclipseState/Tables/BiofilmTable.hpp
+       opm/input/eclipse/EclipseState/Tables/ParticleTable.hpp
        opm/input/eclipse/EclipseState/Tables/DiffMICPTable.hpp
        opm/input/eclipse/EclipseState/Co2StoreConfig.hpp
        opm/input/eclipse/EclipseState/EclipseState.hpp
@@ -1386,6 +1388,7 @@ if(ENABLE_ECL_INPUT)
        opm/input/eclipse/Schedule/Well/WellFractureSeeds.hpp
        opm/input/eclipse/Schedule/Well/WellBrineProperties.hpp
        opm/input/eclipse/Schedule/Well/WellMICPProperties.hpp
+       opm/input/eclipse/Schedule/Well/WellParticleProperties.hpp
        opm/input/eclipse/Schedule/Well/WellPolymerProperties.hpp
        opm/input/eclipse/Schedule/Well/WellTracerProperties.hpp
        opm/input/eclipse/Schedule/Well/WINJMULT.hpp

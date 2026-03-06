@@ -148,6 +148,10 @@ public:
         return has_biofilm;
     }
 
+    bool hasParticle() const noexcept {
+        return has_particle;
+    }
+
     bool hasMICP() const noexcept {
         return has_micp;
     }
@@ -178,6 +182,7 @@ private:
     bool has_biofilm{};
     bool has_micp{};
     bool has_co2_or_h2store{};
+    bool has_particle{};
 
     //  updating the mapping between active and canonical phase indices
     void updateIndexMapping_();

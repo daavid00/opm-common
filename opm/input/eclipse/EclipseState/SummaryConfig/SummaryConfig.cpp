@@ -391,6 +391,8 @@ namespace {
             "AQR", "AQRG", "NQR",
 
             "MMIR", "MOIR", "MUIR", "MMPR", "MOPR", "MUPR",
+
+            "MPIR", "MPPR",
         };
 
         return is_in_set(ratekw, keyword.substr(1))
@@ -2332,6 +2334,8 @@ bool SummaryConfig::require3DField(const std::string& keyword) const
          {"MBIP",     {"RMBIP", "FMBIP"}},
          {"MCIP",     {"RMCIP", "FMCIP"}},
          {"AMIP",     {"RAMIP", "FAMIP"}},
+         {"PRIP",     {"RPRIP", "FPRIP"}},
+         {"PSIP",     {"RPSIP", "FPSIP"}},
     };
 
     auto iter = required_fields.find(keyword);
