@@ -2035,6 +2035,8 @@ BiofilmTable::BiofilmTable(const DeckItem& item, const int tableID)
     m_schema.addColumn(ColumnSchema("HALF_VELOCITY_UREA", Table::RANDOM, Table::DEFAULT_CONST));
     m_schema.addColumn(ColumnSchema("DENSITY_CALCITE", Table::RANDOM, Table::DEFAULT_CONST));
     m_schema.addColumn(ColumnSchema("YIELD_UREA_TO_CALCITE_COEFFICIENT", Table::RANDOM, Table::DEFAULT_CONST));
+    m_schema.addColumn(ColumnSchema("MAXIMUM_MICROBIAL_DEATH_RATE", Table::RANDOM, Table::DEFAULT_CONST));
+    m_schema.addColumn(ColumnSchema("MICROBIAL_DEATH_RATE_EXPONENT", Table::RANDOM, Table::DEFAULT_CONST));
 
     SimpleTable::init("BIOFPARA", item, tableID);
 }
@@ -2116,6 +2118,19 @@ BiofilmTable::getYieldUreaToCalciteCoefficient() const
 {
     return SimpleTable::getColumn(12);
 }
+
+const TableColumn&
+BiofilmTable::getMaximumMicrobialDeathRate() const
+{
+    return SimpleTable::getColumn(13);
+}
+
+const TableColumn&
+BiofilmTable::getMicrobialDeathRateExponent() const
+{
+    return SimpleTable::getColumn(14);
+}
+
 
 DiffMICPTable::DiffMICPTable(const DeckItem& item, const int tableID)
 {

@@ -3,7 +3,7 @@
   "sections": [
     "PROPS"
   ],
-  "description": "MICP and BIOFILM parameters: BDEN, DEATH, GROWTH, HALF, YIELD, FACTOR, ATACH, DETRAT, DETEXP, UREA, HALF, CDEN, and YUTOC.",
+  "description": "MICP and BIOFILM parameters: BDEN, DEATH, GROWTH, HALF, YIELD, FACTOR, ATACH, DETRAT, DETEXP, UREA, HALF, CDEN, YUTOC, MAXDEATH, and DEATHEXP.",
   "size": {
     "keyword": "TABDIMS",
     "item": "NTSFUN"
@@ -26,6 +26,8 @@
         "1/Time",
         "Concentration",
         "Density",
+        "1",
+        "1/Time",
         "1"]
     }
   ]

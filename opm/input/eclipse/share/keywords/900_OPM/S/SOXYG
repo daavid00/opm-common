@@ -3,7 +3,7 @@
   "sections": [
     "SOLUTION"
   ],
-  "requires": ["MICP", "WATER"],
+  "requires": ["WATER"],
   "description": "Initial oxygen concentration",
   "data": {
     "value_type": "DOUBLE",

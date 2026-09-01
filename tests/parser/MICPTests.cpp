@@ -62,7 +62,7 @@ BOOST_AUTO_TEST_CASE( TestBiofPara ) {
     "100*0.25 /\n"
     "PROPS\n"
     "BIOFPARA\n"
-    " 1. 2. 3. 4. 5. 6. 7. 8. 9. 10. 11. 12. 13. /\n"
+    " 1. 2. 3. 4. 5. 6. 7. 8. 9. 10. 11. 12. 13. 14. 15. /\n"
     "/\n";
 
     UnitSystem unitSystem = UnitSystem( UnitSystem::UnitType::UNIT_TYPE_METRIC );
@@ -87,4 +87,6 @@ BOOST_AUTO_TEST_CASE( TestBiofPara ) {
     BOOST_CHECK_EQUAL( biofilmTable.getHalfVelocityUrea().front()              , 11. );
     BOOST_CHECK_EQUAL( biofilmTable.getDensityCalcite().front()                , 12. );
     BOOST_CHECK_EQUAL( biofilmTable.getYieldUreaToCalciteCoefficient().front() , 13. );
+    BOOST_CHECK_EQUAL( biofilmTable.getMaximumMicrobialDeathRate().front()     , 14. * siFactor1 );
+    BOOST_CHECK_EQUAL( biofilmTable.getMicrobialDeathRateExponent().front()    , 15. );
 }

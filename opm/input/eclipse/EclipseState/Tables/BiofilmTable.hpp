@@ -43,6 +43,8 @@ public:
     const TableColumn& getHalfVelocityUrea() const;
     const TableColumn& getDensityCalcite() const;
     const TableColumn& getYieldUreaToCalciteCoefficient() const;
+    const TableColumn& getMaximumMicrobialDeathRate() const;
+    const TableColumn& getMicrobialDeathRateExponent() const;
 };
 
 } // end of namespace Opm
